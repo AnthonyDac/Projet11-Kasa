@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import TopNav from '../../components/Topnav/TopNavigation';
 import Card from '../../components/Card/CardComponent';
 import './HomePage.css';
 
@@ -32,6 +32,7 @@ class HomePage extends React.Component {
         }
         return (
             <>
+                <TopNav />
                 <div className="cardContainer">
                     {data.map((element) => (
                         <Card key={element.id} id={element.id} pictures={element.pictures} title={element.title} />
