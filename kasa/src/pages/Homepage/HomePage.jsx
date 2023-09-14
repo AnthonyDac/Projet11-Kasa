@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from '/src/assets/react.svg'
-import viteLogo from '/vite.svg'
-import './HomePage.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Card from '../../components/Card/CardComponent';
+import './HomePage.css';
 
-function App() {
-    const [count, setCount] = useState(0)
+class HomePage extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            data: [], // Initialiser le tableau de données
+            loading: true,
+        };
+    }
 
-    return (
-        <>
-            <div>
-                <a href="https://vitejs.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo" />
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img src={reactLogo} className="logo react" alt="React logo" />
-                </a>
-            </div>
-            <h1>Vite + React</h1>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-                <p>
-                    Edit <code>src/App.jsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
-        </>
-    )
+    componentDidMount() {
+        // Effectuer la requête fetch dans componentDidMount
+        fetch('/src/data/data.json')
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({ data, loading: false }); // Mettre à jour le state avec les données récupérées
+            })
+            .catch((error) => {
+                console.error('Erreur lors de la récupération des données :', error);
+                this.setState({ loading: false }); // Mettre à jour l'état de chargement en cas d'erreur
+            });
+    }
+
+    render() {
+        const { data, loading } = this.state;
+        if (loading) {
+            return <div>Chargement en cours...</div>;
+        }
+        return (
+            <>
+                <div className="cardContainer">
+                    {data.map((element) => (
+                        <Card key={element.id} id={element.id} pictures={element.pictures} title={element.title} />
+                    ))}
+                </div>
+            </>
+        );
+    }
 }
 
-export default App
+export default HomePage;
