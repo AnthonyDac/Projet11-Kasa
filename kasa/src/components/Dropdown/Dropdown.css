@@ -4,10 +4,6 @@
   overflow: hidden;
 }
 
-.dropdown.close {
-    animation: heightReduction 1s ease-in-out forwards;
-}
-
 .dropdownTop {
     position: relative;
     width: 95%;
@@ -56,12 +52,8 @@
     padding: 40px 10px 40px 20px;
     margin-top: -10px;
     border-radius:  0 0 10px 10px;
-    animation: slideDown 0.4s ease-in-out forwards;
     overflow: hidden;
-}
-
-.dropdown .dropdownContent.close {
-    animation: slideUp 0.4s ease-in-out forwards;
+    animation: 0.4s ease-in-out forwards slideDown;
 }
 
 @media (max-width: 426px) {
@@ -82,14 +74,6 @@
 }
 }
 
-  @keyframes heightReduction {
-    0% {
-      
-    }
-    100% {
-      height: 59px;
-    }
-  }
 @keyframes slideDown {
     0% {
       transform: translateY(-100%);
@@ -98,38 +82,5 @@
     100% {
       transform: translateY(0);
       transform-origin: top center;
-    }
-  }
-
-  @keyframes slideUp {
-    0% {
-      transform: translateY(0);
-      transform-origin: top center;
-    }
-    100% {
-        transform: translateY(-100%);
-      transform-origin: top center;
-    }
-  }
-
-@keyframes rotate {
-    0% {
-      transform: rotate(0deg);
-      transform-origin: center center;
-    }
-    100% {
-      transform: rotate(180deg);
-      transform-origin: center center;
-    }
-  }
-
-  @keyframes rotateReverse {
-    0% {
-        transform: rotate(180deg);
-      transform-origin: center center;
-    }
-    100% {
-      transform: rotate(0deg);
-      transform-origin: center center;
     }
   }

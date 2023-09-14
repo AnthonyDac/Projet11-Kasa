@@ -8,26 +8,23 @@ function Dropdown({ title, content }) {
         setIsOpen(!isOpen);
     }
 
-    useEffect(() => {
-        // Attendez un court délai (par exemple 100 ms) avant de définir la classe "close"
-        const timeout = setTimeout(() => {
-            setIsOpen(false);
-        }, 50);
-
-        return () => clearTimeout(timeout);
-    }, []);
-
     return (
-        <div className={`dropdown ${!isOpen ? 'close' : ''}`} id="dropdown">
+        <div className={`dropdown`} id="dropdown">
             <div className="dropdownTop">
                 <p>{title}</p>
-                <button onClick={toggleDropdown} className="dropdown-toggle">
-                    <i className={`fa-solid fa-chevron-up ${isOpen ? 'open' : 'close'}`}></i>
-                </button>
+                {isOpen ?
+                    <button onClick={toggleDropdown} className="dropdown-toggle">
+                        <i className={`fa-solid fa-chevron-down`}></i>
+                    </button> : <button onClick={toggleDropdown} className="dropdown-toggle">
+                        <i className={`fa-solid fa-chevron-up`}></i>
+                    </button>}
+
             </div>
-            <div className={`dropdownContent ${!isOpen ? 'close' : ''}`}>
-                {content}
-            </div>
+            {isOpen ?
+                <div className={`dropdownContent`}>
+                    {content}
+                </div>
+                : <></>}
         </div>
     );
 }
