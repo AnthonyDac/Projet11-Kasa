@@ -1,6 +1,8 @@
 import React from 'react';
 import TopNav from '../../components/Topnav/TopNavigation';
 import Card from '../../components/Card/CardComponent';
+import Footer from '../../components/Footer/FooterComponent';
+
 import './HomePage.css';
 
 class HomePage extends React.Component {
@@ -38,6 +40,7 @@ class HomePage extends React.Component {
                         <Card key={element.id} id={element.id} pictures={element.pictures} title={element.title} />
                     ))}
                 </div>
+                <Footer />
             </>
         );
     }
